@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+		<% include ../partials/header.ejs %>		
+<body>
+	
+<% include ../partials/nav.ejs %>
+
+
+
+	<!-- page title -->
+<section class="page-title-section overlay" data-background="/images/backgrounds/page-title.jpg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="list-inline custom-breadcrumb">
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary"><%= title %></a></li>    
+        </ul>
+        <p class="text-lighten"><%= desc%></p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- contact -->
+<section class="section bg-gray">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="section-title"><%= title%></h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-7 mb-4 mb-lg-0">
+        <% if (error && error.length > 0) { %>
+    <div class="alert alert-danger container text-center text-capitalize">
+        <%= error %>
+    </div>
+    <% } %>
+    <% if (success && success.length > 0) { %>
+    <div class="alert alert-success container text-center text-capitalize">
+        <%= success %>
+    </div>
+    <% } %>
+
+
+
+<% if(typeof errors !== "undefined"){ %>
+      <% Object.keys(errors).forEach(function(error){ %> 
+      <div class="alert alert-danger container text-center text-capitalize">
+        <%= error.msg %>
+      </div>
+      <% }); %>
+   <% } %>
+        <form class="text-center border border-light p-5" method='post' action='/users/forget'>
+
+          <input type="email" class="form-control mb-3" id="mail" name="email" placeholder="Your Email" autofocus="true" >
+          
+          <button type="submit" value="send" class="btn btn-primary">Change Password</button>
+        </form>
+      </div>
+</div>
+</div>
+</section>
+
+	<% include ../partials/footer.ejs %>	
+	<% include ../partials/foot.ejs %>	
+	</body>
+	
+</html>

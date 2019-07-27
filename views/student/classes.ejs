@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+		<% include ../partials/header.ejs %>		
+<body>
+<% if (error && error.length > 0) { %>
+    <div class="alert alert-danger container text-center text-capitalize">
+        <%= error %>
+    </div>
+    <% } %>
+    <% if (success && success.length > 0) { %>
+    <div class="alert alert-success container text-center text-capitalize">
+        <%= success %>
+    </div>
+    <% } %>
+
+
+
+<% if(typeof errors !== "undefined"){ %>
+      <% Object.keys(errors).forEach(function(error){ %> 
+      <div class="alert alert-danger container text-center text-capitalize">
+        <%= error.errorMessage %>
+      </div>
+      <% }); %>
+   <% } %>	
+		<% include ../partials/nav.ejs %>
+	
+	<!-- page title -->
+<section class="page-title-section overlay" data-background="/images/backgrounds/page-title.jpg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="list-inline custom-breadcrumb">
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="@@page-link">Classes for:</a></li>
+          <li class="list-inline-item text-white h3 font-secondary @@nasted"><%= student.username  %></li>
+        </ul>
+        <p class="text-lighten">Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /page title -->
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex align-items-center section-title justify-content-between">
+          <h2 class="mb-0 text-nowrap mr-3">Our Course</h2>
+          <div class="border-top w-100 border-primary d-none d-sm-block"></div>
+          <div>
+            <a href="courses.html" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">see all</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+   
+
+<% if(typeof student.classes !== "undefined"){ %>
+      <% student.classes.forEach(function(clas){ %> 
+       <!-- course item -->
+  <div class="col-lg-4 col-sm-6 mb-5">
+    <div class="card p-0 border-primary rounded-0 hover-shadow">
+      <div class="card-body">
+        
+        <a href="course-single.html">
+          <h4 class="card-title"><%= clas.class_title%></h4>
+        </a>
+        
+        <a href="./<%= clas.class_id %>/detailes" class="btn btn-primary btn-sm">See Dtailes</a>
+        
+      </div>
+    </div>
+  </div>
+      <% }); %>
+
+ <% } %>
+
+ 
+</div>
+
+</section>
+
+
+
+	<% include ../partials/footer.ejs %>	
+	<% include ../partials/foot.ejs %>	
+	</body>
+	
+</html>

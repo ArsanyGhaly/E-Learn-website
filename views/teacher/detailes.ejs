@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+		<% include ../partials/header.ejs %>		
+<body>
+  <% if (error && error.length > 0) { %>
+    <div class="alert alert-danger container text-center text-capitalize">
+        <%= error %>
+    </div>
+    <% } %>
+    <% if (success && success.length > 0) { %>
+    <div class="alert alert-success container text-center text-capitalize">
+        <%= success %>
+    </div>
+    <% } %>
+
+
+
+<% if(typeof errors !== "undefined"){ %>
+      <% Object.keys(errors).forEach(function(error){ %> 
+      <div class="alert alert-danger container text-center text-capitalize">
+        <%= error.errorMessage %>
+      </div>
+      <% }); %>
+   <% } %>
+	
+  <% include ../partials/nav.ejs %>
+
+
+	<!-- page title -->
+<section class="page-title-section overlay" data-background="/images/backgrounds/page-title.jpg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="list-inline custom-breadcrumb">
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="@@page-link">Our Courses</a></li>
+          <li class="list-inline-item text-white h3 font-secondary nasted"><%= classname.title %></li>
+         
+        </ul>
+        <p class="list-inline-item text-white h3 font-secondary nasted">Lessons:<%= classname.lessons.length%></p>
+        <p class="text-lighten"><%= classname.description %></p>
+         <a href="/teachers/classes/<%=classname._id %>/lessons/add" class="btn btn-primary">Add Lesson</a>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mb-4">
+        <!-- course thumb -->
+        
+        <img src=" /images/up/<%=classname.image %>" class="img-fluid w-100">
+      </div>
+    </div>
+   
+   <!-- course info -->
+    <div class="row align-items-center mb-5">
+      <div class="col-xl-3 order-1 col-sm-6 mb-4 mb-xl-0">
+        <h2><%= classname.title%></h2>
+      </div>
+      <div class="col-xl-6 order-sm-3 order-xl-2 col-12 order-2">
+        <ul class="list-inline text-xl-center">
+          <li class="list-inline-item mr-7 mb-3 mb-sm-0">
+            <div class="d-flex align-items-center">
+              <i class="ti-book text-primary icon-md mr-2"></i>
+              <div class="text-left">
+                <h6 class="mb-0">COURSES</h6>
+                <p class="mb-0"><%= classname.duration %></p>
+              </div>
+            </div>
+          </li>
+          <li class="list-inline-item mr-7 mb-3 mb-sm-0">
+            <div class="d-flex align-items-center">
+              <i class="ti-alarm-clock text-primary icon-md mr-2"></i>
+              <div class="text-left">
+                <h6 class="mb-0">DURATION</h6>
+                <p class="mb-0"><%= classname.period %></p>
+              </div>
+            </div>
+          </li>
+          <li class="list-inline-item mr-7 mb-3 mb-sm-0">
+            <div class="d-flex align-items-center">
+              <i class="ti-money text-primary icon-md mr-2"></i>
+              <div class="text-left">
+                <h6 class="mb-0">FEE</h6>
+                <p class="mb-0"><%= classname.fees %></p>
+              </div>
+            </div>
+          </li>
+          <li class="list-inline-item mr-7 mb-3 mb-sm-0">
+            <div class="d-flex align-items-center">
+              <i class="ti-user text-primary icon-md mr-2"></i>
+              <div class="text-left">
+                <h6 class="mb-0">Students</h6>
+                <p class="mb-0"><%= classname.Num_Students %></p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="col-xl-3 text-sm-right text-left order-sm-2 order-3 order-xl-3 col-sm-6 mb-4 mb-xl-0">
+
+      </div>
+      <!-- border -->
+      <div class="col-12 mt-4 order-4">
+        <div class="border-bottom border-primary"></div>
+      </div>
+    </div>
+    <!-- course details -->
+      <div class="col-12">
+        <h5 class="mb-3">Teacher</h5>
+        <div class="d-flex justify-content-between align-items-center flex-wrap">
+          <div class="media mb-2 mb-sm-0">
+            <img class="mr-4 img-fluid" src="/images/teacher.jpg" alt="Teacher">
+            <div class="media-body">
+              <h4 class="mt-0"><%=classname.instructor %></h4>
+              Photographer
+            </div>
+          </div>
+          
+        </div>
+        <div class="border-bottom border-primary mt-4"></div>
+      </div>
+
+
+ 
+</div>
+
+</section>
+<!-- notice -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <ul class="list-unstyled">
+          <!-- notice item -->
+          <%if (classname.lessons !== 'undefined') {%>
+            <% classname.lessons.forEach(function(lesson){ %>
+          <!-- notice item -->
+          <li class="d-md-table mb-4 w-100 border-bottom hover-shadow">
+            <div class="d-md-table-cell text-center p-4 bg-primary text-white mb-4 mb-md-0"><span class="h2 d-block"><%= moment(lesson.Add_date).format("DD") %></span> <%= moment(lesson.Add_date).format("MMMM YYYY") %>
+              <h4><%= moment(lesson.Add_date).format(" h:mm a") %></h4>
+            </div>
+            <div class="d-md-table-cell px-4 vertical-align-middle mb-4 mb-md-0">
+              <a href="notice-single.html" class="h4 mb-3 d-block"><%=lesson.lesson_title %></a>
+              <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt perferendis saepe omnis officia! Doloribus quae maiores laboriosam praesentium enim fugiat ipsam laudantium assumenda!</p>
+            </div>
+            <div class="d-md-table-cell text-right pr-0 pr-md-4"><a href="/classes/<%=classname._id%>/lessons/<%=lesson._id%>" class="btn btn-primary">read more</a></div>
+          </li>
+         <%}) %>
+         <% }%>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /notice -->
+
+
+	<% include ../partials/footer.ejs %>	
+	<% include ../partials/foot.ejs %>	
+	</body>
+	
+</html>

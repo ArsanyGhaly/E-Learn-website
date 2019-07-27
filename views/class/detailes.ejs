@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+		<% include ../partials/header.ejs %>		
+<body>
+	<% if (error && error.length > 0) { %>
+    <div class="alert alert-danger container text-center text-capitalize">
+        <%= error %>
+    </div>
+    <% } %>
+    <% if (success && success.length > 0) { %>
+    <div class="alert alert-success container text-center text-capitalize">
+        <%= success %>
+    </div>
+    <% } %>
+
+
+
+<% if(typeof errors !== "undefined"){ %>
+      <% Object.keys(errors).forEach(function(error){ %> 
+      <div class="alert alert-danger container text-center text-capitalize">
+        <%= error.errorMessage %>
+      </div>
+      <% }); %>
+   <% } %>
+  <% include ../partials/nav.ejs %>
+
+
+	<!-- page title -->
+<section class="page-title-section overlay" data-background="/images/backgrounds/page-title.jpg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="list-inline custom-breadcrumb">
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="@@page-link">Our Courses</a></li>
+          <li class="list-inline-item text-white h3 font-secondary nasted"><%= classname.title %></li>
+          
+        </ul>
+        <p class="text-lighten"><%= truncateText(classname.description,200); %></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mb-4">
+        <!-- course thumb -->
+        
+        <img src="/images/up/<%=classname.image%>" class="img-fluid w-100">
+      </div>
+    </div>
+     
+   <!-- course info -->
+    <div class="row align-items-center mb-5">
+      <div class="col-xl-3 order-1 col-sm-6 mb-4 mb-xl-0">
+        <h2><%= classname.title%></h2>
+      </div>
+      <div class="col-xl-6 order-sm-3 order-xl-2 col-12 order-2">
+        <ul class="list-inline text-xl-center">
+          <li class="list-inline-item mr-7 mb-3 mb-sm-0">
+            <div class="d-flex align-items-center">
+              <i class="ti-book text-primary icon-md mr-2"></i>
+              <div class="text-left">
+                <h6 class="mb-0">COURSES</h6>
+                <p class="mb-0"><%= classname.duration %></p>
+              </div>
+            </div>
+          </li>
+          <li class="list-inline-item mr-7 mb-3 mb-sm-0">
+            <div class="d-flex align-items-center">
+              <i class="ti-alarm-clock text-primary icon-md mr-2"></i>
+              <div class="text-left">
+                <h6 class="mb-0">DURATION</h6>
+                <p class="mb-0"><%= classname.period %></p>
+              </div>
+            </div>
+          </li>
+          <li class="list-inline-item mr-7 mb-3 mb-sm-0">
+            <div class="d-flex align-items-center">
+              <i class="ti-money text-primary icon-md mr-2"></i>
+              <div class="text-left">
+                <h6 class="mb-0">FEE</h6>
+                <p class="mb-0"><%= classname.fees %></p>
+              </div>
+            </div>
+          </li>
+          <li class="list-inline-item mr-7 mb-3 mb-sm-0">
+            <div class="d-flex align-items-center">
+              <i class="ti-user text-primary icon-md mr-2"></i>
+              <div class="text-left">
+                <h6 class="mb-0">Students</h6>
+                <p class="mb-0"><%= classname.Num_Students %></p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="col-xl-3 text-sm-right text-left order-sm-2 order-3 order-xl-3 col-sm-6 mb-4 mb-xl-0">
+
+       
+              
+        <%if (typeof user === "undefined" || user === null ) {%>
+         <a href="#" class="btn btn-primary">Log in </a>
+      <%}else {%>
+       <form id="classRegForm" method="post" action="/<%=user.type %>s/register">
+                <input type="hidden" name="student_id" value="<%= user._id %>">
+                <input type="hidden" name="class_id" value="<%= classname._id%>">
+                <input type="hidden" name="class_title" value="<%= classname.title %>">
+                <input type="submit" class="btn btn-primary" value="Register For This Class">
+              </form>
+            <%}%>
+      </div>
+      <!-- border -->
+      <div class="col-12 mt-4 order-4">
+        <div class="border-bottom border-primary">
+          <%= classname.description %>
+        </div>
+      </div>
+    </div>
+    <!-- course details -->
+      <div class="col-12">
+        <h5 class="mb-3">Teacher</h5>
+        <div class="d-flex justify-content-between align-items-center flex-wrap">
+          <div class="media mb-2 mb-sm-0">
+            <img class="mr-4 img-fluid" src="/images/teacher.jpg" alt="Teacher">
+            <div class="media-body">
+              <h4 class="mt-0"><%=classname.instructor %></h4>
+              Photographer
+            </div>
+          </div>
+          
+        </div>
+        <div class="border-bottom border-primary mt-4"></div>
+      </div>
+
+
+ 
+</div>
+
+</section>
+
+<!-- /notice -->
+
+	<% include ../partials/footer.ejs %>	
+	<% include ../partials/foot.ejs %>	
+	</body>
+	
+</html>

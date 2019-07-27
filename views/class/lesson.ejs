@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+		<% include ../partials/header.ejs %>		
+<body>
+<% if (error && error.length > 0) { %>
+    <div class="alert alert-danger container text-center text-capitalize">
+        <%= error %>
+    </div>
+    <% } %>
+    <% if (success && success.length > 0) { %>
+    <div class="alert alert-success container text-center text-capitalize">
+        <%= success %>
+    </div>
+    <% } %>
+
+
+
+<% if(typeof errors !== "undefined"){ %>
+      <% Object.keys(errors).forEach(function(error){ %> 
+      <div class="alert alert-danger container text-center text-capitalize">
+        <%= error.errorMessage %>
+      </div>
+      <% }); %>
+   <% } %>	
+  <% include ../partials/nav.ejs %>
+
+<!-- page title -->
+<section class="page-title-section overlay" data-background="/images/backgrounds/page-title.jpg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="list-inline custom-breadcrumb">
+          <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="@@page-link">Our Courses</a></li>
+          <li class="list-inline-item text-white h3 font-secondary nasted"><%= classname.title %></li>
+          
+        </ul>
+        <p class="text-lighten"><%= classname.description %></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mb-4">
+         <img src=" /images/up/<%=classname.image %>" class="img-fluid w-100">
+      </div>
+    </div>
+
+
+
+
+<!-- notice details -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex">
+          <div class="text-center mr-4">
+            <div class="p-4 bg-primary text-white">
+                <span class="h2 d-block"><%= moment(lesson.Add_date).format("DD") %></span> <%= moment(lesson.Add_date).format("MMMM, YYYY") %>
+            </div>
+          </div>
+          <!-- notice content -->
+          <div>
+            <h3 class="mb-4"><%=lesson.lesson_title %></h3>
+            <p><%-lesson.lesson_body %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /notice details -->
+
+
+
+    
+ 
+</div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<% include ../partials/footer.ejs %>	
+	<% include ../partials/foot.ejs %>	
+	</body>
+	
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+		<% include partials/header.ejs %>
+		
+		
+	<body>
+		<header>
+			  <% if (error && error.length > 0) { %>
+    <div class="alert alert-danger container text-center text-capitalize">
+        <%= error %>
+    </div>
+    <% } %>
+    <% if (success && success.length > 0) { %>
+    <div class="alert alert-success container text-center text-capitalize">
+        <%= success %>
+    </div>
+    <% } %>
+
+
+
+<% if(typeof errors !== "undefined"){ %>
+      <% Object.keys(errors).forEach(function(error){ %> 
+      <div class="alert alert-danger container text-center text-capitalize">
+        <%= error.errorMessage %>
+      </div>
+      <% }); %>
+   <% } %>
+		<% include partials/nav.ejs %>
+
+
+
+
+
+	</header>
+	<% include partials/slider.ejs %>	
+	<% include class/class.ejs %>
+  <% include users/teachers.ejs %>
+
+	<% include partials/footer.ejs %>	
+	<% include partials/foot.ejs %>	
+	</body>
+	
+</html>

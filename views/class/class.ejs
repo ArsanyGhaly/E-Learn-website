@@ -1,0 +1,45 @@
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex align-items-center section-title justify-content-between">
+          <h2 class="mb-0 text-nowrap mr-3">Our Course</h2>
+          <div class="border-top w-100 border-primary d-none d-sm-block"></div>
+          <div>
+            <a href="/classes/" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">see all</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+   
+
+<% if(typeof classes !== "undefined"){ %>
+      <% classes.forEach(function(clas){ %> 
+       <!-- course item -->
+  <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+    <div class="card p-0 border-primary rounded-0 hover-shadow">
+      <img class="card-img-top rounded-0" src="/images/courses/course-1.jpg" alt="course thumb">
+      <div class="card-body">
+        <ul class="list-inline mb-2">
+          <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i><%= moment(clas.Date).format("MM-DD-YYYY")%></li>
+          <li class="list-inline-item"><a class="text-color" href="#"><%=clas.instructor%></a></li>
+        </ul>
+
+        <a href="course-single.html">
+          <h4 class="card-title"><%= clas.title%></h4>
+        </a>
+        <p class="card-text mb-4"> <%= truncateText(clas.description,100); %></p>
+        <a href="../../classes/<%= clas._id %>/detailes" class="btn btn-primary btn-sm">Apply now</a>
+      </div>
+    </div>
+  </div>
+      <% }); %>
+   <% }else{
+   console.log('bygygygygy');
+ } %>
+
+ </div>
+</div>
+
+</section>
