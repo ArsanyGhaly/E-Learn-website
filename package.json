@@ -20,7 +20,7 @@
     "express-session": "*",
     "express-validator": "*",
     "http-errors": "~1.6.3",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "mongodb": "*",
     "mongoose": "*",
     "monk": "^7.0.0",
